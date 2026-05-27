@@ -1,0 +1,29 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Poetry / Virtual Environments
+# (Keep pyproject.toml and poetry.lock, but ignore the virtualenv itself)
+.venv/
+env/
+venv/
+ENV/
+
+# FastAPI / Environment secrets
+.env
+.env.*
+
+# Distribution / Build
+dist/
+build/
+*.egg-info/
+
+# Unit test / Coverage reports
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE settings
+.vscode/
+.idea/

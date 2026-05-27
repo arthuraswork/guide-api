@@ -1,0 +1,14 @@
+#!/bin/bash
+
+CMD=$1
+
+case "$CMD" in 
+    run)
+        poetry run uvicorn main:app
+    ;;
+    debug)
+        poetry run uvicorn main:app --reload
+    ;;
+    install)
+        poetry install
+esac
