@@ -12,9 +12,9 @@ places_router = APIRouter()
 async def get_list(count: int = Query(1, gt=0, le=config.count_of_places)):
     lines = get_lines(PATH_TO_PLACES_DATA) 
     result = []
-    for i, line in enumerate(lines):
+    for line in lines:
         result.append(line) 
-        if count <= i:
+        if count == len(result):
             break
     return result
 
