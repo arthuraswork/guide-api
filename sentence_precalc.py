@@ -1,5 +1,4 @@
 from sentence_transformers import SentenceTransformer
-#from sklearn.metrics.pairwise import cosine_similarity
 import json 
 import pickle
 from utils.consts import PATH_TO_PLACES_DATA, PATH_TO_PLACES_EMBEDDINGS

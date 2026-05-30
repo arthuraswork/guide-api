@@ -7,6 +7,7 @@ case "$CMD" in
         export HF_HUB=DISABLE_SYMLINKS_WARNING=1
         export TRANSFORMERS_VERBOSITY=error
         export TOKENIZERS_PARALLELISM=false
+        export HF_HUB_OFFLINE=1
         HF_TOKEN="HF-TOKEN"
         poetry run uvicorn main:app
 

@@ -17,9 +17,7 @@ class PlaceModel(BaseModel):
         return False
 
     def __le__(self, value):
-        if self.price <= value:
-            return True
-        return False
+        return self.price <= value
 
     def as_html(self):
         return f"""

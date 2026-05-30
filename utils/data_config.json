@@ -1,5 +1,9 @@
 {
-    "places":
+        "places":
+    {
+        "count": 20
+    },
+        "hotels":
     {
         "count": 20
     }

@@ -4,17 +4,25 @@ import numpy as np
 import pickle
 from utils.consts import PATH_TO_PLACES_EMBEDDINGS
 
-model = SentenceTransformer('cointegrated/rubert-tiny2')
+def sentence_vars():
+    """
+    load corpus and module 
+    """
+    model = SentenceTransformer('cointegrated/rubert-tiny2')
+    with open(PATH_TO_PLACES_EMBEDDINGS, 'rb') as f:
+        corpus = pickle.load(f)
+    matrix = np.vstack([i['embedding'] for i in corpus])
+    return model, corpus, matrix
 
-with open(PATH_TO_PLACES_EMBEDDINGS, 'rb') as f:
-    corpus = pickle.load(f)
+def search_place(query: str, k: int) -> list[dict]:
+    """
+    search by user query
+    """
+    embedd = model.encode(query).reshape(1,-1)
+    sims = cosine_similarity(matrix, embedd).flatten()
+    sorted_vecs = np.argsort(sims)[-k:][::-1]
+    return [corpus[i]['object'] for i in sorted_vecs]
 
-matrix = np.vstack([i['embedding'] for i in corpus])
+model, corpus, matrix = sentence_vars()
 
-def search_place(query, k=3):
-    embedd = model.encode(query)
-    sims = []
-    for i, m in enumerate(matrix):
-        sims.append((corpus[i]['object'], cosine_similarity([m], [embedd])))
-    sorted_m = sorted(sims, reverse=True, key=lambda x: x[1])[:k]
-    return [n[0] for n in sorted_m]
+

@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Query
 from define.objects import PlaceModel
 from utils.data_config import create_actual_config
-from define.exceptions import Exceptions
 from data.database import get_lines
 from utils.consts import PATH_TO_PLACES_DATA
 from typing import Literal

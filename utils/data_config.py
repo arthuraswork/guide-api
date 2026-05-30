@@ -11,6 +11,7 @@ def read_config():
 def create_actual_config():
     config  = read_config()
     obj = DataConfig(
-        config['places']['count']
+        config['places']['count'],
+        config['hotels']['count']
     )
     return obj
