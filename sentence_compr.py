@@ -11,11 +11,10 @@ with open(PATH_TO_PLACES_EMBEDDINGS, 'rb') as f:
 
 matrix = np.vstack([i['embedding'] for i in corpus])
 
-def search(query, k=3):
+def search_place(query, k=3):
     embedd = model.encode(query)
     sims = []
     for i, m in enumerate(matrix):
-        sims.append((corpus[i]['title'], cosine_similarity([m], [embedd])))
+        sims.append((corpus[i]['object'], cosine_similarity([m], [embedd])))
     sorted_m = sorted(sims, reverse=True, key=lambda x: x[1])[:k]
     return [n[0] for n in sorted_m]
-

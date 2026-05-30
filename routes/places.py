@@ -40,4 +40,3 @@ async def get_filter_price(op: Literal['ge', 'le'] = Query('le'), value: int | f
             if len(result) == count:
                 break
     return result
-

@@ -15,7 +15,7 @@ embedds = []
 for obj in objects:
     text = f"{obj['title']} {obj['type']}: {obj['description']}"
     embedd = model.encode(text, normalize_embeddings=True)
-    embedds.append({'title': obj['title'], 'embedding':embedd})
+    embedds.append({'title': obj['title'], 'object': obj,'embedding':embedd})
 
 with open(PATH_TO_PLACES_EMBEDDINGS, 'wb') as f:
     pickle.dump(embedds, f)

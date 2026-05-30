@@ -4,7 +4,12 @@ CMD=$1
 
 case "$CMD" in 
     run)
+        export HF_HUB=DISABLE_SYMLINKS_WARNING=1
+        export TRANSFORMERS_VERBOSITY=error
+        export TOKENIZERS_PARALLELISM=false
+        HF_TOKEN="HF-TOKEN"
         poetry run uvicorn main:app
+
     ;;
     debug)
         poetry run uvicorn main:app --reload
