@@ -57,8 +57,8 @@ models = {
 
 
 ops = {
-    '-eq': lambda x, y: x == y,
-    '-neq': lambda x, y: x != y,
-    '-ge': lambda x, y: x >= y,
-    '-le': lambda x, y: x <= y,
+    'eq': lambda x, y: x == y,
+    'neq': lambda x, y: x != y,
+    'ge': lambda x, y: x >= y,
+    'le': lambda x, y: x <= y,
 }

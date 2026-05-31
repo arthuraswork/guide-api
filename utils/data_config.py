@@ -1,7 +1,7 @@
 import json
 from .config import DataConfig
 
-from .consts import PATH_TO_DATA_CONFIG
+PATH_TO_DATA_CONFIG = 'utils/data_config.json'
 
 def read_config():
     with open(PATH_TO_DATA_CONFIG, 'r', encoding='utf-8') as f:

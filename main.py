@@ -1,15 +1,8 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import RedirectResponse
-from routes.places import places_router
-from routes.sentence import sentence_router
-from routes.hotels import hotels_router
 from routes.common import router
 app = FastAPI(title='guide-api')
 
-app.include_router(sentence_router)
-app.include_router(places_router)
-app.include_router(hotels_router)
-app.include_router(hotels_router)
 app.include_router(router)
 
 
