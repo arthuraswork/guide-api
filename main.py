@@ -3,11 +3,15 @@ from fastapi.responses import RedirectResponse
 from routes.places import places_router
 from routes.sentence import sentence_router
 from routes.hotels import hotels_router
-
+from routes.common import router
 app = FastAPI(title='guide-api')
+
 app.include_router(sentence_router)
 app.include_router(places_router)
 app.include_router(hotels_router)
+app.include_router(hotels_router)
+app.include_router(router)
+
 
 @app.get('/')
 def api_map():
@@ -18,11 +22,13 @@ def api_map():
             {
                 "/list": "list (count) of places, use ?count=(0 -gt int -le count(places))",
                 "/filter": "list of filter by ?params and ?value: [title, type: str, rate: int] and ?count",
-                "sentence": "~in work~"
             },
         "/sentence":
         {
-           "/places": "list of N most similar objects" 
+           "/places": "list of N most similar objects by user query ?query=(str))" 
+        },
+        "/hotels": {
+            "/list": "list (count) of hotels, use ?count=(0 -gt int -le count(places))",
         }
     }
 

@@ -1,6 +1,17 @@
 from pydantic import BaseModel, Field
 from enum import Enum
 
+
+
+class LocalModel:
+    ...
+
+    def filter(self, param: str, op: str, val: any): 
+        if param in self.__dict__:
+            return ops[op](getattr(self, param), val)
+        raise KeyError()
+
+
 class MealPlan(Enum):
 
     RO = "RO"  
@@ -9,7 +20,7 @@ class MealPlan(Enum):
     FB = "FB"  
     AI = "AI"  
 
-class PlaceModel(BaseModel):
+class PlaceModel(BaseModel, LocalModel):
     title: str = Field(min_length= 1, max_length= 31)
     description: str = Field(min_length= 8, max_length= 255)
     type: str
@@ -20,15 +31,9 @@ class PlaceModel(BaseModel):
     lat: float = Field(ge=-90, le=90)
     lon: float = Field(ge=-180, le=180)
 
-    def __ge__(self, value):
-        if self.price >= value:
-            return True
-        return False
 
-    def __le__(self, value):
-        return self.price <= value
 
-class HotelModel(BaseModel):
+class HotelModel(BaseModel, LocalModel):
     title: str = Field(min_length=1, max_length=31)
     description: str = Field(min_length=8, max_length=255)
     type: str
@@ -43,3 +48,17 @@ class HotelModel(BaseModel):
 
     lat: float = Field(ge=-90, le=90)
     lon: float = Field(ge=-180, le=180)
+
+models = {
+    'places': PlaceModel,
+    'hotels': HotelModel
+} 
+
+
+
+ops = {
+    '-eq': lambda x, y: x == y,
+    '-neq': lambda x, y: x != y,
+    '-ge': lambda x, y: x >= y,
+    '-le': lambda x, y: x <= y,
+}

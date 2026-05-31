@@ -19,9 +19,9 @@ async def get_list(count: int = Query(1, gt=0, le=config.count_of_hotels)):
     return result
 
 @hotels_router.get('/hotels/filter')
-async def get_filter(param: Literal['title','type','rate'] = Query("rate"), value: int | str = Query(5), count: int = Query(1, gt=0, le=config.count_of_places)):
+async def get_filter(param: Literal['title','type','rate', 'spa', 'meal', ''] = Query("rate"), value: int | str = Query(5), count: int = Query(1, gt=0, le=config.count_of_places)):
     result = []
-    for line in get_lines(PATH_TO_PLACES_DATA):
+    for line in get_lines(PATH_TO_HOTELS_DATA):
         if line.get(param) == value:
             result.append(line)
         if count == len(result):

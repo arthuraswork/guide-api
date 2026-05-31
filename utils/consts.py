@@ -6,3 +6,5 @@ PATH_TO_PLACES_EMBEDDINGS = 'data/places/embeddings.pkl'
 
 PATH_TO_HOTELS_DATA = 'data/hotels/hotels.jsonl'
 PATH_TO_HOTELS_EMBEDDINGS = 'data/hotels/embeddings.pkl'
+
+PATH_TO_DATA = 'data/{category}/{category}.jsonl'
