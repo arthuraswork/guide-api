@@ -10,19 +10,12 @@ app.include_router(router)
 def api_map():
     return {
         "/": "map of API",
-        "/help":"~in work~",
-        "/places":
+        "/places || /hotels":
             {
-                "/list": "list (count) of places, use ?count=(0 -gt int -le count(places))",
-                "/filter": "list of filter by ?params and ?value: [title, type: str, rate: int] and ?count",
-            },
-        "/sentence":
-        {
-           "/places": "list of N most similar objects by user query ?query=(str))" 
-        },
-        "/hotels": {
-            "/list": "list (count) of hotels, use ?count=(0 -gt int -le count(places))",
-        }
+                "/list": "list of places ?limit: int",
+                "/filter": "list of filter by ?param: str, ?op: str, ?value: any ",
+                "/sentence": "list of N most similar objects by user query ?query str ?k: int)" 
+            }
     }
 
 
