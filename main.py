@@ -7,10 +7,10 @@ app.include_router(router)
 
 
 @app.get('/')
-def api_map():
+async def api_map():
     return {
         "/": "map of API",
-        "/places || /hotels":
+        ['hotels','places']:
             {
                 "/list": "list of places ?limit: int",
                 "/filter": "list of filter by ?param: str, ?op: str, ?value: any ",

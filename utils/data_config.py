@@ -15,3 +15,4 @@ def create_actual_config():
         config['hotels']['count']
     )
     return obj
+
