@@ -1,0 +1,23 @@
+#!/bin/bash
+PORT=${1:-8000}
+
+echo "--main--"
+sleep 2
+url_main="localhost:$PORT/"
+curl $url_main
+
+echo "--list--"
+sleep 2
+url_list="localhost:$PORT/hotels/list?limit=3"
+curl $url_list
+
+echo "--filter--"
+sleep 2
+url_filter="localhost:$PORT/hotels/filter?param=rate&op=eq&val=5"
+curl $url_filter
+
+echo "--sentence--"
+sleep 2
+url_sentence="localhost:$PORT/hotels/sentence?query=hotel%20on%20island"
+curl $url_sentence
+
