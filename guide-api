@@ -1,19 +1,34 @@
 #!/bin/bash
 
 CMD=$1
+PORT=${2:-8000}
+set -e
+
+exclude_HF_verbosity(){
+    export HF_HUB=DISABLE_SYMLINKS_WARNING=1
+    export TRANSFORMERS_VERBOSITY=error
+    export TOKENIZERS_PARALLELISM=false
+    export HF_HUB_OFFLINE=1
+}
+
+python3 data_check.py
+if [ $? -ne 0 ]; then
+    exit 1
+fi
+
+exclude_HF_verbosity
 
 case "$CMD" in 
     run)
-        export HF_HUB=DISABLE_SYMLINKS_WARNING=1
-        export TRANSFORMERS_VERBOSITY=error
-        export TOKENIZERS_PARALLELISM=false
-        export HF_HUB_OFFLINE=1
-        HF_TOKEN="HF-TOKEN"
-        poetry run uvicorn main:app
-
+        poetry run uvicorn main:app --port $PORT
     ;;
+
+    test)
+        poetry run uvicorn main:app --port $PORT & ./test $PORT
+    ;;
+
     debug)
-        poetry run uvicorn main:app --reload
+        poetry run uvicorn main:app --port $PORT --reload
     ;;
     install)
         poetry install

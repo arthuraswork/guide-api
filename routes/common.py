@@ -1,13 +1,12 @@
 from fastapi import APIRouter, Query, HTTPException, Depends
 from utils.consts import PATH_TO_DATA, Category, FilterParams, limit_args
 from define.objects import LocalModel, models
-from data.database import get_lines
+from data.data_manager import get_lines
 from sentence_compr import search_by_sentence
 
 router = APIRouter()
 
-
-@router.get('/common/{category}/list')
+@router.get('/{category}/list')
 async def get_list(
     category: Category, 
     limit: int = Query(**limit_args)
@@ -36,8 +35,8 @@ async def get_filter(
     return result
 
 
-@router.get('/common/{category}/sentence')
-def get_search_sentence(category: Category, query: str = Query(max_length=64), k: int = Query(3)):
-    return search_by_sentence.models[category].input(query, k)
+@router.get('/{category}/sentence')
+def get_search_sentence(category: Category, query: str = Query(max_length=64), limit: int = Query(3)):
+    return search_by_sentence.models[category].input(query, limit)
 
 

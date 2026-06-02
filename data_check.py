@@ -12,9 +12,6 @@ def check_data_files():
                     f'{path} not exists; fix config or add files'
                 )
             
-                
-            
-
 try:
     check_data_files()
 except FileNotFoundError as e:

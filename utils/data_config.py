@@ -16,3 +16,11 @@ def create_actual_config():
     )
     return obj
 
+def count_config_actualisation(params = ['places','hotels']):
+    configs = read_config()
+    for param in params:
+        with open(f'data/{param}/{param}.jsonl', 'r') as f:
+            count = sum([1 for _ in f])
+        configs[param]['count'] = count
+        with open('utils/data_config.json', 'w') as f:
+            json.dump(configs, f, indent=4)
