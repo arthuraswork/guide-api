@@ -4,7 +4,6 @@ import numpy as np
 import pickle
 from utils.consts import PATH_TO_EMBEDDINGS
 from utils.data_config import create_actual_config
-from typing import Literal
 
 config = create_actual_config()
 

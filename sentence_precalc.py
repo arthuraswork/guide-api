@@ -2,7 +2,6 @@ from sentence_transformers import SentenceTransformer
 import json 
 import pickle
 from utils.consts import PATH_TO_DATA, PATH_TO_EMBEDDINGS
-from utils.data_config import PATH_TO_DATA_CONFIG
 
 model = SentenceTransformer('cointegrated/rubert-tiny2')
 
