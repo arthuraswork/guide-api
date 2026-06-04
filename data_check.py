@@ -1,4 +1,4 @@
-from utils.data_config import PATH_TO_DATA_CONFIG
+from define.utils.data_config import PATH_TO_DATA_CONFIG
 import json
 import os
 import sys

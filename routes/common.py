@@ -1,10 +1,12 @@
 from fastapi import APIRouter, Query, HTTPException, Depends
-from utils.consts import PATH_TO_DATA, Category, FilterParams, limit_args
+from define.utils.consts import PATH_TO_DATA, Category, FilterParams, limit_args
 from define.objects import LocalModel, models
 from data.data_manager import get_lines
 from sentence_compr import search_by_sentence
-
+from define.utils.data_config import create_actual_config
 router = APIRouter()
+
+config = create_actual_config()
 
 @router.get('/{category}/list')
 async def get_list(
@@ -17,7 +19,6 @@ async def get_list(
         if limit == len(result):
             break          
     return result
-
 
 @router.get('/{category}/filter')
 async def get_filter(
@@ -33,6 +34,12 @@ async def get_filter(
         if len(result) == limit:
             return result
     return result
+
+@router.get('/{category}/count')
+async def get_count(
+    category: Category
+):
+    return config.category[category].count
 
 
 @router.get('/{category}/sentence')

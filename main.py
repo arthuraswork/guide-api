@@ -2,9 +2,8 @@ from fastapi import FastAPI, Request
 from fastapi.responses import RedirectResponse
 
 from routes.common import router
-from utils.data_config import count_config_actualisation
-from utils.logger import info, warning
-
+from define.utils.data_config import count_config_actualisation
+from define.utils.logger import info, warning
 
 app = FastAPI(title='guide-api')
 
@@ -22,7 +21,7 @@ async def request_logger(request: Request, call_next):
             warning(f"TO {request.url.path} FROM {request.client.host} AS {request.method} WITH {response.status_code}")
         return response
     except Exception as e:
-        warning(f"TO {request.url.path} FROM {request.client.host} AS exception EXCEPTION {e}")
+        warning(f"TO {request.url.path} FROM {request.client.host} AS exception WITH {e}")
         raise
 
 @app.get('/')

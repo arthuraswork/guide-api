@@ -1,5 +1,5 @@
 import json
-from .config import DataConfig
+from .config import DataConfig, Category
 
 PATH_TO_DATA_CONFIG = 'utils/data_config.json'
 
@@ -9,12 +9,12 @@ def read_config():
         return configs
     
 def create_actual_config():
-    config  = read_config()
-    obj = DataConfig(
-        config['places']['count'],
-        config['hotels']['count']
-    )
-    return obj
+    config = DataConfig(dict())
+    config_json  = read_config()
+    for c in config_json:
+        cat = Category(c, config_json[c]['count'])
+        config.category[c] = cat
+    return config
 
 def count_config_actualisation(params = ['places','hotels']):
     configs = read_config()

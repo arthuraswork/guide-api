@@ -2,8 +2,11 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 import pickle
-from utils.consts import PATH_TO_HOTELS_EMBEDDINGS, PATH_TO_PLACES_EMBEDDINGS
+from define.utils.consts import PATH_TO_EMBEDDINGS
+from define.utils.data_config import create_actual_config
 from typing import Literal
+
+config = create_actual_config()
 
 class SentenceModel():
 
@@ -27,12 +30,12 @@ class SentenceModel():
         return [self.corpus[i]['object'] for i in vecs]
 
 class SentenceMiddleWare:
-    def __init__(self, paths_to_embdds: dict):
+    def __init__(self, categories: list):
         self.common_model = SentenceTransformer('cointegrated/rubert-tiny2')
-        self.models: dict[Literal['hotels','places'],SentenceModel] = {}
+        self.models: dict[str, SentenceModel] = dict()
         
-
-        for category, path in paths_to_embdds.items():
+        for category in categories:
+            path = PATH_TO_EMBEDDINGS.replace("{category}", category)
             with open(path, 'rb') as f:
                 corpus = pickle.load(f)
             matrix = np.vstack([c['embedding'] for c in corpus])
@@ -42,9 +45,6 @@ class SentenceMiddleWare:
             
 
 search_by_sentence = SentenceMiddleWare(
-    {
-        'hotels': PATH_TO_HOTELS_EMBEDDINGS,
-        'places': PATH_TO_PLACES_EMBEDDINGS
-    }
+    config.get_list()   
 )
 

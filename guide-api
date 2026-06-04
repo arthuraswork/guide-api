@@ -32,4 +32,7 @@ case "$CMD" in
     ;;
     install)
         poetry install
+    ;;
+    embedding-calc)
+        poetry run python sentence_precalc.py
 esac
