@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Query, HTTPException, Depends
-from define.utils.consts import PATH_TO_DATA, Category, FilterParams, limit_args
+from utils.consts import PATH_TO_DATA, Category, FilterParams, limit_args
 from define.objects import LocalModel, models
 from data.data_manager import get_lines
 from sentence_compr import search_by_sentence
-from define.utils.data_config import create_actual_config
+from utils.data_config import create_actual_config
 router = APIRouter()
 
 config = create_actual_config()

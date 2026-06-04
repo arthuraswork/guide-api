@@ -11,10 +11,11 @@ exclude_HF_verbosity(){
     export HF_HUB_OFFLINE=1
 }
 
+
 python3 data_check.py
 if [ $? -ne 0 ]; then
     exit 1
-fi
+fi 
 
 exclude_HF_verbosity
 
@@ -30,9 +31,11 @@ case "$CMD" in
     debug)
         poetry run uvicorn main:app --port $PORT --reload
     ;;
+
     install)
         poetry install
     ;;
+
     embedding-calc)
         poetry run python sentence_precalc.py
 esac

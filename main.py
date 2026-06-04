@@ -2,8 +2,8 @@ from fastapi import FastAPI, Request
 from fastapi.responses import RedirectResponse
 
 from routes.common import router
-from define.utils.data_config import count_config_actualisation
-from define.utils.logger import info, warning
+from utils.data_config import count_config_actualisation
+from utils.logger import info, warning
 
 app = FastAPI(title='guide-api')
 

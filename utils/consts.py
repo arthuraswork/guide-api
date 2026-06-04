@@ -1,7 +1,7 @@
 from enum import Enum
 from pydantic import BaseModel
 from typing import Literal
-from define.utils.data_config import create_actual_config
+from utils.data_config import create_actual_config
 
 config = create_actual_config()
 

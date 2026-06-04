@@ -2,8 +2,8 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 import pickle
-from define.utils.consts import PATH_TO_EMBEDDINGS
-from define.utils.data_config import create_actual_config
+from utils.consts import PATH_TO_EMBEDDINGS
+from utils.data_config import create_actual_config
 from typing import Literal
 
 config = create_actual_config()

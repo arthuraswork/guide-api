@@ -1,4 +1,4 @@
-from define.utils.data_config import PATH_TO_DATA_CONFIG
+from utils.data_config import PATH_TO_DATA_CONFIG
 import json
 import os
 import sys
@@ -11,7 +11,8 @@ def check_data_files():
                 raise FileNotFoundError(
                     f'{path} not exists; fix config or add files'
                 )
-            
+
+
 try:
     check_data_files()
 except FileNotFoundError as e:
